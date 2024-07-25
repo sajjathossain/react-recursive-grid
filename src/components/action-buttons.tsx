@@ -4,12 +4,15 @@ export const ActionButtons = (props: TActionButtonProps) => {
   return (
     <div
       style={{
+        alignItems: 'center',
+        border: `1px solid #aeeffe`,
+        borderRadius: '5px',
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
-        border: `1px solid #aeeffe`,
-        borderRadius: '10px',
+        justifyContent: 'center',
         padding: '10px',
+        placeItems: 'center',
       }}
     >
       <div

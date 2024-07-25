@@ -29,15 +29,20 @@ export const GridItem: FC<TGridItem> = (props) => {
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: item.isVertical ? 'column' : 'row',
-        width: 'fit-content',
-        height: 'fit-content',
+        display: 'grid',
+        ...(item.isVertical
+          ? {
+            gridTemplateColumns: '1fr 1fr',
+          }
+          : {
+            gridTemplateRows: '1fr 1fr',
+          }),
         border: `1px solid ${item.borderColor}`,
-        borderRadius: '10px',
-        placeItems: 'center',
-        gap: '15px',
+        borderRadius: '5px',
+        gap: '5px',
+        height: 'auto',
         padding: '10px',
+        width: 'auto',
       }}
     >
       {children.map((child, idx) => (
@@ -49,13 +54,6 @@ export const GridItem: FC<TGridItem> = (props) => {
             removeChildren={removeChildren}
             children={child.children}
           />
-          {idx === 0 && (
-            <div
-              style={{
-                borderRadius: '10px',
-              }}
-            />
-          )}
         </Fragment>
       ))}
     </div>
