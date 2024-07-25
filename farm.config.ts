@@ -1,5 +1,8 @@
 import { defineConfig } from '@farmfe/core';
 
 export default defineConfig({
-  plugins: ['@farmfe/plugin-react']
+  server: {
+    port: 3000,
+  },
+  plugins: ['@farmfe/plugin-react'],
 });
