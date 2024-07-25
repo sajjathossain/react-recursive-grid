@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime';
 import { TAddChildren, TChildren, TItem, TRemoveChildren } from '../lib';
 import { ActionButtons } from './action-buttons';
 
@@ -35,22 +36,31 @@ export const GridItem = ({
         width: 'fit-content',
         height: 'fit-content',
         border: `1px solid ${item.borderColor}`,
-        borderRadius: '15px',
+        borderRadius: '10px',
         placeItems: 'center',
         gap: '15px',
-        padding: '20px',
+        padding: '10px',
       }}
     >
       {children.map((child, idx) => (
-        <GridItem
-          item={child}
-          items={children}
-          parentItem={item}
-          addChildren={addChildren}
-          removeChildren={removeChildren}
-          children={child.children}
-          key={Date.now() + idx}
-        />
+        <Fragment>
+          <GridItem
+            item={child}
+            items={children}
+            parentItem={item}
+            addChildren={addChildren}
+            removeChildren={removeChildren}
+            children={child.children}
+            key={Date.now() + idx}
+          />
+          {idx === 0 && (
+            <div
+              style={{
+                borderRadius: '10px',
+              }}
+            />
+          )}
+        </Fragment>
       ))}
     </div>
   );

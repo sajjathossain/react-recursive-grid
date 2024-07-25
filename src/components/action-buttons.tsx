@@ -7,7 +7,7 @@ export const ActionButtons = (props: TActionButtonProps) => {
         display: 'flex',
         flexDirection: 'column',
         gap: '10px',
-        border: `1px solid #eee`,
+        border: `1px solid #aeeffe`,
         borderRadius: '10px',
         padding: '10px',
       }}
@@ -36,8 +36,16 @@ export const ActionButtons = (props: TActionButtonProps) => {
       <button
         {...(props?.removeChildren &&
           props?.parentItem && {
-          onClick: () => props.removeChildren(props.items, props?.parentItem),
+            onClick: () => props.removeChildren(props.items, props?.parentItem),
+          })}
+        {...(props.parentItem?.children && {
+          style: {
+            backgroundColor: 'darkseagreen',
+            color: 'whitesmoke',
+            opacity: 59,
+          },
         })}
+        disabled={!props.parentItem?.children}
       >
         -
       </button>
