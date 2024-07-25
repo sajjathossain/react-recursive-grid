@@ -13,13 +13,11 @@ type TGridItem = {
 };
 
 export const GridItem: FC<TGridItem> = (props) => {
-  const { children, item, parentItem, addChildren, removeChildren, items } =
-    props;
+  const { children, item, parentItem, addChildren, removeChildren } = props;
 
   if (!children) {
     return (
       <ActionButtons
-        items={items}
         removeChildren={removeChildren}
         addChildren={addChildren}
         item={item}
@@ -46,7 +44,6 @@ export const GridItem: FC<TGridItem> = (props) => {
         <Fragment key={`${Date.now()}-${idx}`}>
           <GridItem
             item={child}
-            items={children}
             parentItem={item}
             addChildren={addChildren}
             removeChildren={removeChildren}

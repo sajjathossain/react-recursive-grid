@@ -16,7 +16,6 @@ export type TRemoveChildren = (parentItem?: TItem) => void;
 
 export type TActionButtonProps =
   | {
-    items?: [TItem, TItem];
     item: TItem;
     parentItem: TItem;
     addChildren: TAddChildren;
