@@ -36,8 +36,8 @@ export const ActionButtons = (props: TActionButtonProps) => {
       <button
         {...(props?.removeChildren &&
           props?.parentItem && {
-            onClick: () => props.removeChildren(props.items, props?.parentItem),
-          })}
+          onClick: () => props.removeChildren(props?.parentItem),
+        })}
         {...(props.parentItem?.children && {
           style: {
             backgroundColor: 'darkseagreen',
