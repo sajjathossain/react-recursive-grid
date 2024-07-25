@@ -29,3 +29,21 @@ export type TActionButtonProps =
     removeChildren?: null;
     parentItem?: null;
   };
+
+export type TResetStates = ({
+  parentItem,
+  child,
+  shouldDelete,
+}:
+  | {
+    parentItem: TItem;
+  } & (
+    | {
+      child: TItem;
+      shouldDelete?: false;
+    }
+    | {
+      child?: null;
+      shouldDelete: true;
+    }
+  )) => void;
