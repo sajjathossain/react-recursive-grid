@@ -15,13 +15,11 @@ export const useActions = () => {
   const removeChildren: TRemoveChildren = (_children, parentItem) => {
     if (!parentItem) return;
     if (!parentItem.children) return (parentItem.children = false);
-    // console.log({ children, parentItem });
     parentItem.children = false;
     setCount((prev) => (prev > 0 ? prev - 1 : 0));
   };
 
   const addChildren: TAddChildren = (item, direction) => {
-    console.log({ item });
     item.isVertical = direction === 'vertical';
     item.children = [
       {
