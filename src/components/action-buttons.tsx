@@ -1,11 +1,13 @@
 import { TActionButtonProps } from '../lib';
+import { CustomButton } from './custom-button';
 
 export const ActionButtons = (props: TActionButtonProps) => {
+  const { addChildren, removeChildren, parentItem, item } = props;
   return (
     <div
       style={{
         alignItems: 'center',
-        border: `1px solid #aeeffe`,
+        border: `1px solid #bef1ff35`,
         borderRadius: '5px',
         display: 'flex',
         flexDirection: 'column',
@@ -21,37 +23,22 @@ export const ActionButtons = (props: TActionButtonProps) => {
           gap: '10px',
         }}
       >
-        <button
-          {...(props?.addChildren && {
-            onClick: () => props.addChildren(props.item, 'horizontal'),
-          })}
-        >
-          V
-        </button>
-        <button
-          {...(props?.addChildren && {
-            onClick: () => props.addChildren(props.item, 'vertical'),
-          })}
-        >
-          H
-        </button>
+        <CustomButton
+          label="V"
+          onClick={() => addChildren && addChildren(item, 'horizontal')}
+        />
+        <CustomButton
+          label="H"
+          onClick={() => addChildren && addChildren(item, 'vertical')}
+        />
       </div>
-      <button
-        {...(props?.removeChildren &&
-          props?.parentItem && {
-          onClick: () => props.removeChildren(props?.parentItem),
-        })}
-        {...(props.parentItem?.children && {
-          style: {
-            backgroundColor: 'darkseagreen',
-            color: 'whitesmoke',
-            opacity: 59,
-          },
-        })}
-        disabled={!props.parentItem?.children}
-      >
-        -
-      </button>
+      <CustomButton
+        onClick={() => {
+          if (removeChildren && parentItem) removeChildren(parentItem);
+        }}
+        label="delete"
+        disabled={!parentItem?.children}
+      />
     </div>
   );
 };
