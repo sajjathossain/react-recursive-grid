@@ -16,12 +16,14 @@ const styles = (disabled?: boolean) => {
 
 type TCustomButtonProps = {
   onClick?: () => void;
-  label: string;
+  label?: string;
+  icon?: JSX.Element;
   disabled?: boolean;
 };
 
 export const CustomButton: FC<TCustomButtonProps> = (props) => {
-  const { onClick, label, disabled } = props;
+  const { onClick, disabled, icon } = props;
+
   return (
     <button
       disabled={disabled}
@@ -30,7 +32,7 @@ export const CustomButton: FC<TCustomButtonProps> = (props) => {
         onClick,
       })}
     >
-      {label}
+      {icon}
     </button>
   );
 };

@@ -1,5 +1,8 @@
 import { TActionButtonProps } from '../lib';
 import { CustomButton } from './custom-button';
+import { FaMinusSquare } from 'react-icons/fa';
+import { FaGripLinesVertical } from 'react-icons/fa';
+import { FaGripLines } from 'react-icons/fa';
 
 export const ActionButtons = (props: TActionButtonProps) => {
   const { addChildren, removeChildren, parentItem, item } = props;
@@ -24,12 +27,12 @@ export const ActionButtons = (props: TActionButtonProps) => {
         }}
       >
         <CustomButton
-          label="V"
-          onClick={() => addChildren && addChildren(item, 'horizontal')}
+          icon={<FaGripLinesVertical />}
+          onClick={() => addChildren && addChildren(item, 'vertical')}
         />
         <CustomButton
-          label="H"
-          onClick={() => addChildren && addChildren(item, 'vertical')}
+          icon={<FaGripLines />}
+          onClick={() => addChildren && addChildren(item, 'horizontal')}
         />
       </div>
       <CustomButton
@@ -38,6 +41,7 @@ export const ActionButtons = (props: TActionButtonProps) => {
         }}
         label="delete"
         disabled={!parentItem?.children}
+        icon={<FaMinusSquare />}
       />
     </div>
   );
