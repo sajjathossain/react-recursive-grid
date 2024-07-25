@@ -20,14 +20,14 @@ export const ActionButtons = (props: TActionButtonProps) => {
       >
         <button
           {...(props?.addChildren && {
-            onClick: () => props.addChildren(props.item, 'vertical'),
+            onClick: () => props.addChildren(props.item, 'horizontal'),
           })}
         >
           V
         </button>
         <button
           {...(props?.addChildren && {
-            onClick: () => props.addChildren(props.item, 'horizontal'),
+            onClick: () => props.addChildren(props.item, 'vertical'),
           })}
         >
           H
