@@ -12,7 +12,7 @@ export type TAddChildren = (
   direction: 'vertical' | 'horizontal'
 ) => void;
 
-export type TRemoveChildren = (childen?: TChildren, parentItem?: TItem) => void;
+export type TRemoveChildren = (parentItem?: TItem) => void;
 
 export type TActionButtonProps =
   | {
