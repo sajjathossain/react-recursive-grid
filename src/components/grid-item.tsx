@@ -37,6 +37,8 @@ export const GridItem: FC<TGridItem> = (props) => {
           : {
             gridTemplateRows: '1fr 1fr',
           }),
+        color: 'white',
+        backgroundColor: item.borderColor,
         border: `1px solid ${item.borderColor}`,
         borderRadius: '5px',
         gap: '5px',
