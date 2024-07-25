@@ -1,23 +1,22 @@
 import { Fragment } from 'react/jsx-runtime';
 import { TAddChildren, TChildren, TItem, TRemoveChildren } from '../lib';
 import { ActionButtons } from './action-buttons';
+import { FC } from 'react';
 
-export const GridItem = ({
-  children,
-  item,
-  parentItem,
-  addChildren,
-  removeChildren,
-  items,
-}: {
+type TGridItem = {
   item: TItem;
   items?: [TItem, TItem];
   parentItem: TItem;
   children: TChildren;
   addChildren: TAddChildren;
   removeChildren: TRemoveChildren;
-}) => {
-  if (!children)
+};
+
+export const GridItem: FC<TGridItem> = (props) => {
+  const { children, item, parentItem, addChildren, removeChildren, items } =
+    props;
+
+  if (!children) {
     return (
       <ActionButtons
         items={items}
@@ -27,6 +26,7 @@ export const GridItem = ({
         parentItem={parentItem}
       />
     );
+  }
 
   return (
     <div
@@ -43,7 +43,7 @@ export const GridItem = ({
       }}
     >
       {children.map((child, idx) => (
-        <Fragment>
+        <Fragment key={`${Date.now()}-${idx}`}>
           <GridItem
             item={child}
             items={children}
@@ -51,7 +51,6 @@ export const GridItem = ({
             addChildren={addChildren}
             removeChildren={removeChildren}
             children={child.children}
-            key={Date.now() + idx}
           />
           {idx === 0 && (
             <div
