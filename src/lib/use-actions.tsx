@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { generateRandomColor } from './color';
-import { TAddChildren, TItem, TRemoveChildren } from './types';
+import { TAddChildren, TItem, TRemoveChildren, TResetStates } from './types';
 
 export const useActions = () => {
   const initialState: TItem = {
@@ -12,13 +12,23 @@ export const useActions = () => {
   const items = useRef(initialState);
   const [_, setCount] = useState(0);
 
-  const removeChildren: TRemoveChildren = (parentItem) => {
-    if (!parentItem) return;
-    if (!parentItem.children) {
+  const resetStates: TResetStates = ({ parentItem, child, shouldDelete }) => {
+    if (shouldDelete) {
       delete parentItem.borderColor;
       parentItem.isVertical = false;
       parentItem.children = false;
       return;
+    }
+
+    parentItem.children = child.children;
+    parentItem.isVertical = child.isVertical;
+    parentItem.borderColor = child.borderColor;
+  };
+
+  const removeChildren: TRemoveChildren = (parentItem) => {
+    if (!parentItem) return;
+    if (!parentItem.children) {
+      return resetStates({ parentItem, shouldDelete: true });
     }
 
     const childWithMultipleElements = parentItem.children.find(
@@ -26,15 +36,11 @@ export const useActions = () => {
     );
 
     if (!childWithMultipleElements) {
-      delete parentItem.borderColor;
-      parentItem.isVertical = false;
-      parentItem.children = false;
+      resetStates({ parentItem, shouldDelete: true });
     }
 
     if (childWithMultipleElements) {
-      parentItem.children = childWithMultipleElements.children;
-      parentItem.isVertical = childWithMultipleElements.isVertical;
-      parentItem.borderColor = childWithMultipleElements.borderColor;
+      resetStates({ parentItem, child: childWithMultipleElements });
     }
     setCount((prev) => (prev > 0 ? prev - 1 : 0));
   };
