@@ -1,11 +1,18 @@
+import { CgBlock, CgMergeHorizontal, CgMergeVertical } from 'react-icons/cg';
 import { TActionButtonProps } from '../lib';
 import { CustomButton } from './custom-button';
-import { FaMinusSquare } from 'react-icons/fa';
 import { FaGripLinesVertical } from 'react-icons/fa';
 import { FaGripLines } from 'react-icons/fa';
+import { useMemo } from 'react';
 
 export const ActionButtons = (props: TActionButtonProps) => {
   const { addChildren, removeChildren, parentItem, item } = props;
+
+  const icon = useMemo(() => {
+    if (!parentItem || !parentItem.children) return <CgBlock />;
+    return parentItem.isVertical ? <CgMergeVertical /> : <CgMergeHorizontal />;
+  }, [parentItem]);
+
   return (
     <div
       style={{
@@ -41,7 +48,7 @@ export const ActionButtons = (props: TActionButtonProps) => {
         }}
         label="delete"
         disabled={!parentItem?.children}
-        icon={<FaMinusSquare />}
+        icon={icon}
       />
     </div>
   );
